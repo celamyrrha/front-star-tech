@@ -4,7 +4,10 @@ import axios from 'axios';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Form, Button, Container, Col, Row } from 'reactstrap';
 
-
+const Subtitulo = styled.h2`
+  color: #000080;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+`;
 const FormInput = styled.input`
 border: 1px solid;
 `;
@@ -36,6 +39,15 @@ const App = () => {
       }
 
     } catch (error) {
+      setNomeError(true);
+      setCargoError(true);
+      setDt_nascError(true);
+      setCepError(true);
+      setEnderecoError(true);
+      setBairroError(true);
+      setCidadeError(true);
+      setCelularError(true);
+      setEmailError(true);
       setCpfError(true);
     }
   };
@@ -62,28 +74,44 @@ const App = () => {
     errors: []    
   });
 
-  
+  const [nomeError, setNomeError] = useState(false);
+  const [cargoError, setCargoError] = useState(false);
+  const [dt_nascError, setDt_nascError] = useState(false);
+  const [cepError, setCepError] = useState(false);
+  const [enderecoError, setEnderecoError] = useState(false);
+  const [bairroError, setBairroError] = useState(false);
+  const [cidadeError, setCidadeError] = useState(false);
+  const [celularError, setCelularError] = useState(false);
+  const [emailError, setEmailError] = useState(false);
   const [cpfError, setCpfError] = useState(false);
 
+  useEffect(()=>{
+    console.log(form);
+  }, [form]);
 
   return (
     <Container>    
     <Form>
       <Row>
     <Col>
+    <Subtitulo>DADOS PESSOAIS</Subtitulo>
+      <hr/>
+      <br/>
       <div>
         <label htmlFor="nome">Nome Completo <Red>*</Red></label><br />
         <FormInput onChange={(e) => {
           setForm({ ...form, nome: e.target.value });
-        }} value={form.nome}></FormInput>
+        }} value={form.nome} required></FormInput>
+        <ErrorSpan isError={nomeError}>Este campo deve ser preenchido</ErrorSpan>
       </div>
       </Col>
       <Col>
       <div>
-        <label htmlFor="cargo">Cargo Pretendido</label><br />
+        <label htmlFor="cargo">Cargo Pretendido <Red>*</Red></label><br />
         <FormInput onChange={(e) => {
           setForm({ ...form, cargo: e.target.value });
-        }} value={form.cargo}></FormInput>
+        }} value={form.cargo} required></FormInput>
+        <ErrorSpan isError={cargoError}>Este campo deve ser preenchido</ErrorSpan>
       </div>
       </Col>
       </Row>
