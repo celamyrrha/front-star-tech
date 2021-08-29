@@ -47,18 +47,21 @@ const App = () => {
         alert('iti malia deu certo');
       }
     } catch (error) {
-      setNomeError(true);
-      setCargoError(true);
-      setDt_nascError(true);
-      setCepError(true);
-      setEnderecoError(true);
-      setBairroError(true);
-      setCidadeError(true);
-      setCelularError(true);
-      setEmailError(true);
       setCpfError(true);
-      setIdentidadeError(true);
     }
+   // catch (error) {
+   //   setNomeError(true);
+   //   setCargoError(true);
+   //   setDt_nascError(true);
+   //   setCepError(true);
+   //   setEnderecoError(true);
+    //  setBairroError(true);
+   //   setCidadeError(true);
+  //    setCelularError(true);
+  //    setEmailError(true);
+   //   setCpfError(true);
+   //   setIdentidadeError(true);
+   // }
   };
 
   const [form, setForm] = useState({
