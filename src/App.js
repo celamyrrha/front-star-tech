@@ -46,6 +46,8 @@ const App = () => {
       if (user.status === 200) {
         alert('iti malia deu certo');
       }
+      if (user.status === 400) {
+        alert( 'Já existe um cadidato com este CPF.')};
 
     } catch (error) {
       setNomeError(true);
