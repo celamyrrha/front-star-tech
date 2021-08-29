@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import axios from 'axios';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Form, Button, Container, Col, Row } from 'reactstrap';
-import { useForm } from "react-hook-form";
+
 
 const FormInput = styled.input`
 border: 1px solid;
@@ -30,7 +30,7 @@ const App = () => {
 
   const createCandidate = async (candidate) => {
     try {
-      const user = await axios.post('https://projeto-star-tech.herokuapp.com/', form);
+      const user = await axios.post(process.env.REACT_APP_API_URL, form);
       if (user.status === 200) {
         alert('iti malia deu certo');
       }
@@ -58,7 +58,8 @@ const App = () => {
     email: '',
     identidade: '',
     veiculo: '',
-    habilitacao: '',    
+    habilitacao: '',
+    errors: []    
   });
 
   
