@@ -4,6 +4,12 @@ import axios from 'axios';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Form, Button, Container, Col, Row } from 'reactstrap';
 
+const Titulo = styled.h2`
+  color: #000080;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+`;
+const Cabecalho = styled.div `
+`;
 const Subtitulo = styled.h2`
   color: #000080;
   font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
@@ -90,13 +96,25 @@ const App = () => {
   }, [form]);
 
   return (
-    <Container>    
+
+        
+        <>  
+<Titulo>
+      <h1>Banco de Currículos</h1>
+      <h5>Preencha seus dados e venha com a gente!</h5>
+</Titulo>
+
+    <Container>
     <Form>
       <Row>
     <Col>
     <Subtitulo>DADOS PESSOAIS</Subtitulo>
       <hr/>
       <br/>
+    </Col>
+    </Row>
+    <Row>
+    <Col>  
       <div>
         <label htmlFor="nome">Nome Completo <Red>*</Red></label><br />
         <FormInput onChange={(e) => {
@@ -283,6 +301,7 @@ const App = () => {
       <Button onClick={() => createCandidate()}>Pronto, acabou!</Button>
     </Form>
     </Container>
+    </>
   );
 };
 
