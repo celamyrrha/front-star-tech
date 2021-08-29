@@ -4,20 +4,24 @@ import axios from 'axios';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Form, Button, Container, Col, Row } from 'reactstrap';
 import * as S from './styled';
+import Header from './components/Header'
 
-const Titulo = styled.h2`
-  color: #000080;
-  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-`;
 const Subtitulo = styled.h2`
-  color: #000080;
+  padding-top:10px;
+  color: #e5e4e2;
+  font-size: 25px;
   font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 `;
 const FormInput = styled.input`
-border: 1px solid;
+border: 1px solid #ddd;
+height 2rem;
+padding: 0 .5rem;
+margin-bottom: 0.5rem;
+border-radius: .25rem;
+
 `;
 const FormSelect = styled.select`
-border: 1px solid;
+border: 1px solid #fff;
 `;
 const Red = styled.span`
 color: red;
@@ -98,19 +102,15 @@ const App = () => {
 
   return (
 <>
+<Header />
 <S.HomeContainer>  
-<Titulo>
-      <h1>Banco de Currículos</h1>
-      <h5>Preencha seus dados e venha com a gente!</h5>
-</Titulo>
-
-    <Container>
+      <Container>
     <Form>
       <Row>
     <Col>
     <Subtitulo>Dados Pessoais</Subtitulo>
       <hr/>
-      <br/>
+
     </Col>
     </Row>
     <Row>
@@ -178,7 +178,7 @@ const App = () => {
         }} onChange={(e) => {
           setForm({ ...form, cep: e.target.value });
         }} value={form.cep} required></FormInput>
-        <ErrorSpan isError={enderecoError}>Este campo deve ser preenchido</ErrorSpan>
+        <ErrorSpan isError={cepError}>Este campo deve ser preenchido</ErrorSpan>
       </div>
         
         </Col>
@@ -266,7 +266,6 @@ const App = () => {
     <br/>
     <Subtitulo>Documentos</Subtitulo>
       <hr/>
-      <br/>
     </Col>
     </Row>
       <Row>
@@ -285,7 +284,7 @@ const App = () => {
         <FormInput type="number" onChange={(e) => {
           setForm({ ...form, cpf: e.target.value });
         }} value={form.cpf}></FormInput>
-        <ErrorSpan isError={cpfError}>CPF já cadastrado!</ErrorSpan>
+        <ErrorSpan isError={cpfError}>Este campo deve ser preenchido</ErrorSpan>
       </div>
         </Col>
       </Row>
@@ -314,8 +313,12 @@ const App = () => {
       </div>
         </Col>
       </Row>
-
-      <Button onClick={() => createCandidate()}>Pronto, acabou!</Button>
+      <Row>
+        <Col>
+        <S.Botao onClick={() => createCandidate()}>Pronto, acabou!</S.Botao>
+        </Col>
+      </Row>
+      
     </Form>
     </Container>
     </S.HomeContainer>

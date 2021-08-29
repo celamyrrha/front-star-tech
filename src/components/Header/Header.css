@@ -1,0 +1,18 @@
+.app-header {
+    display:flex;
+    align-items:initial;
+    padding: 10px;
+    background-color: #1f4e70;
+}
+.titulo {
+    display:block;
+    color: white;
+    align-content: center;
+    padding-top: 32px;
+    padding-left: 70px;
+}
+h1{
+    font-size: 25px;
+    text-align: center;
+    
+}
