@@ -30,7 +30,7 @@ const App = () => {
 
   const createCandidate = async (candidate) => {
     try {
-      const user = await axios.post(process.env.REACT_APP_API_URL, form);
+      const user = await axios.post("https://projeto-star-tech.herokuapp.com/", form);
       if (user.status === 200) {
         alert('iti malia deu certo');
       }
