@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import axios from 'axios';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { Form, Button, Container, Col, Row } from 'reactstrap';
+import { Form, Container, Col, Row } from 'reactstrap';
 import * as S from './styled';
 import Header from './components/Header'
 
@@ -42,7 +42,7 @@ const App = () => {
 
   const createCandidate = async (candidate) => {
     try {
-      const user = await axios.post("https://projeto-star-tech.herokuapp.com/", form);
+      const user = await axios.post("https://projeto-star-tech.herokuapp.com/register", form);
       if (user.status === 200) {
         alert('iti malia deu certo');
       }else{
