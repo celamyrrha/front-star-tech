@@ -45,9 +45,6 @@ const App = () => {
       const user = await axios.post("https://projeto-star-tech.herokuapp.com/register", form);
       if (user.status === 200) {
         alert('iti malia deu certo');
-      }else{
-          alert( 'Já existe um cadidato com este CPF.')
-
       }
     } catch (error) {
       setNomeError(true);
