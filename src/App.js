@@ -1,9 +1,13 @@
+import React from 'react';
 import { useState } from 'react';
 import axios from 'axios';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { Form, Container, Col, Row } from 'reactstrap';
-import * as S from './styled';
-import Header from './components/Header';
+import { Form, Container, Col, Row, Button } from 'reactstrap';
+import * as S from './styled'
+import Header from './components/Header'
+
+
+
 
 const App = () => {
   
@@ -17,10 +21,21 @@ const App = () => {
     try {
       const user = await axios.post('https://projeto-star-tech.herokuapp.com/register', form);
       if (user.status === 200) {
-        alert('iti malia deu certo');
+        alert('Formulário preenchido com sucesso!');
       }
 
     } catch (error) {
+      setNomeError(true);
+      setCargoError(true);
+      setDt_nascError(true);
+      setCepError(true);
+      setEnderecoError(true);
+      setBairroError(true);
+      setCidadeError(true);
+      setCelularError(true);
+      setEmailError(true);
+      setContatoError(true);
+      setIdentidadeError(true);
       setCpfError(true);
     }
   };
@@ -31,7 +46,7 @@ const App = () => {
     cargo: '',
     dt_nasc: '',
     est_civil: 'solteiro',
-    sexo: '',
+    sexo: 'masculino',
     endereco: '',
     bairro: '',
     cidade: '',
@@ -42,10 +57,22 @@ const App = () => {
     contato: '',
     email: '',
     identidade: '',
-    veiculo: '',
-    habilitacao: ''  
+    veiculo: 'sim',
+    habilitacao: 'nao_possui'  
   });
   const [cpfError, setCpfError] = useState(false);
+  const [nomeError, setNomeError] = useState(false);
+  const [cargoError, setCargoError] = useState(false);
+  const [dt_nascError, setDt_nascError] = useState(false);
+  const [cepError, setCepError] = useState(false);
+  const [enderecoError, setEnderecoError] = useState(false);
+  const [bairroError, setBairroError] = useState(false);
+  const [cidadeError, setCidadeError] = useState(false);
+  const [celularError, setCelularError] = useState(false);
+  const [contatoError, setContatoError] = useState(false);
+  const [emailError, setEmailError] = useState(false);
+  const [identidadeError, setIdentidadeError] = useState(false);
+
   
 return (
 <>
@@ -66,7 +93,8 @@ return (
         <label htmlFor="nome">Nome Completo <S.Red>*</S.Red></label><br />
         <S.FormInput onChange={(e) => {
           setForm({ ...form, nome: e.target.value });
-        }} value={form.nome} ></S.FormInput>
+        }} value={form.nome} required></S.FormInput>
+        <S.ErrorSpan isError={nomeError}>Este campo deve ser preenchido</S.ErrorSpan>
        
       </div>
       </Col>
@@ -75,8 +103,8 @@ return (
         <label htmlFor="cargo">Cargo Pretendido <S.Red>*</S.Red></label><br />
         <S.FormInput onChange={(e) => {
           setForm({ ...form, cargo: e.target.value });
-        }} value={form.cargo} ></S.FormInput>
-        
+        }} value={form.cargo} required></S.FormInput>
+        <S.ErrorSpan isError={cargoError}>Este campo deve ser preenchido</S.ErrorSpan>
       </div>
       </Col>
       </Row>
@@ -86,8 +114,8 @@ return (
       <label htmlFor="dt_nasc">Data de Nascimento <S.Red>*</S.Red></label><br />
         <S.FormInput type="date" onChange={(e) => {
           setForm({ ...form, dt_nasc: e.target.value });
-        }} value={form.dt_nasc} ></S.FormInput>
-        
+        }} value={form.dt_nasc} required></S.FormInput>
+        <S.ErrorSpan isError={dt_nascError}>Este campo deve ser preenchido</S.ErrorSpan>
       </div>
       </Col>
         <Col>
@@ -124,8 +152,8 @@ return (
           fetchAddress();
         }} onChange={(e) => {
           setForm({ ...form, cep: e.target.value });
-        }} value={form.cep} ></S.FormInput>
-        
+        }} value={form.cep} required></S.FormInput>
+        <S.ErrorSpan isError={cepError}>Este campo deve ser preenchido</S.ErrorSpan>
       </div>
         
         </Col>
@@ -136,8 +164,8 @@ return (
       <label htmlFor="endereco">Endereço <S.Red>*</S.Red></label><br />
         <S.FormInput onChange={(e) => {
           setForm({ ...form, endereco: e.target.value });
-        }} value={form.endereco} ></S.FormInput>
-        
+        }} value={form.endereco} required></S.FormInput>
+        <S.ErrorSpan isError={enderecoError}>Este campo deve ser preenchido</S.ErrorSpan>
       </div>
         </Col>
         <Col>
@@ -145,8 +173,8 @@ return (
       <label htmlFor="Bairro">Bairro <S.Red>*</S.Red></label><br />
         <S.FormInput onChange={(e) => {
           setForm({ ...form, bairro: e.target.value });
-        }} value={form.bairro} ></S.FormInput>
-        
+        }} value={form.bairro} required></S.FormInput>
+        <S.ErrorSpan isError={bairroError}>Este campo deve ser preenchido</S.ErrorSpan>
       </div>
         </Col>
       </Row>
@@ -156,8 +184,8 @@ return (
       <label htmlFor="cidade">Cidade <S.Red>*</S.Red></label><br />
         <S.FormInput onChange={(e) => {
           setForm({ ...form, cidade: e.target.value });
-        }} value={form.cidade} ></S.FormInput>
-        
+        }} value={form.cidade} required></S.FormInput>
+        <S.ErrorSpan isError={cidadeError}>Este campo deve ser preenchido</S.ErrorSpan>
       </div>
         </Col>
         <Col>
@@ -184,17 +212,18 @@ return (
         <S.FormInput type="tel" onChange={(e) => {
           setForm({ ...form, celular: e.target.value });
         }} value={form.celular} ></S.FormInput>
-        
+        <S.ErrorSpan isError={celularError}>Este campo deve ser preenchido</S.ErrorSpan>
       </div>
         </Col>
       </Row>
       <Row>
         <Col>
         <div>
-      <label htmlFor="contato">Contato</label><br />
+      <label htmlFor="contato">Contato <S.Red>*</S.Red></label><br />
         <S.FormInput type="tel" onChange={(e) => {
           setForm({ ...form, contato: e.target.value });
-        }} value={form.contato}></S.FormInput>
+        }} value={form.contato} required></S.FormInput>
+        <S.ErrorSpan isError={contatoError}>Este campo deve ser preenchido</S.ErrorSpan>
       </div>
         </Col>
         <Col>
@@ -202,8 +231,8 @@ return (
         <label htmlFor="email">E-mail <S.Red>*</S.Red></label><br />
         <S.FormInput type="email" onChange={(e) => {
           setForm({ ...form, email: e.target.value });
-        }} value={form.email} ></S.FormInput>
-        
+        }} value={form.email} required></S.FormInput>
+        <S.ErrorSpan isError={emailError}>Este campo deve ser preenchido</S.ErrorSpan>
         
       </div>
         </Col>
@@ -221,8 +250,8 @@ return (
       <label htmlFor="identidade">Identidade <S.Red>*</S.Red></label><br />
         <S.FormInput  onChange={(e) => {
           setForm({ ...form, identidade: e.target.value });
-        }} value={form.identidade}></S.FormInput>
-        
+        }} value={form.identidade} required></S.FormInput>
+        <S.ErrorSpan isError={identidadeError}>Digite sua Identidade</S.ErrorSpan>
       </div>
         </Col>
         <Col>
@@ -230,8 +259,8 @@ return (
         <label htmlFor="cpf">CPF <S.Red>*</S.Red></label><br />
         <S.FormInput type="number" onChange={(e) => {
           setForm({ ...form, cpf: e.target.value });
-        }} value={form.cpf}></S.FormInput>
-         <S.ErrorSpan isError={cpfError}>AAAAAAAAAAAAAAAAAHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH</S.ErrorSpan>
+        }} value={form.cpf} required></S.FormInput>
+         <S.ErrorSpan isError={cpfError}>Digite seu CPF</S.ErrorSpan>
       </div>
         </Col>
       </Row>
@@ -262,7 +291,9 @@ return (
       </Row>
       <Row>
         <Col>
-        <button onClick={() => createCandidate()}>Jesus apaga a luz</button>
+        <S.Botao >
+        <Button onClick={() => createCandidate()}>Pronto, acabou!</Button>
+        </S.Botao>
         </Col>
       </Row>
       

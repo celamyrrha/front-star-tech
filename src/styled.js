@@ -11,15 +11,10 @@ background-color:#288d9c;
 color: #fff;
 `;
 
-export const Botao = styled.button`
-height: 2rem;
-border 0px;
-background: #808080;
-padding: 0 .5rem;
-color: #fff;
-border-radius: .25rem;
-width: 172vh;
+export const Botao = styled.div`
+width: 152vh;
 margin-top: 20px;
+text-align: center;
 `;
 
 export const Subtitulo = styled.h2`
