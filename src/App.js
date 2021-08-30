@@ -257,7 +257,7 @@ return (
         <Col>
         <div>
         <label htmlFor="cpf">CPF <S.Red>*</S.Red></label><br />
-        <S.FormInput type="number" onChange={(e) => {
+        <S.FormInput type="number" maxLength="11" onChange={(e) => {
           setForm({ ...form, cpf: e.target.value });
         }} value={form.cpf} required></S.FormInput>
          <S.ErrorSpan isError={cpfError}>Digite seu CPF</S.ErrorSpan>
